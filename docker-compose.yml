@@ -1,0 +1,50 @@
+version: '3'
+services:
+  ispn-1:
+    image: karm/sinkit-infinispan:1.27
+    network_mode: "host"
+    volumes:
+    - /tmp:/tmp
+    ports:
+      - "192.168.122.156:11322:11322/tcp"
+      - "192.168.122.156:11323:11323/tcp"
+      - "192.168.122.156:4812:4812/tcp"
+      - "192.168.122.156:4813:4813/tcp"
+      - "192.168.122.156:57700:57700/tcp"
+      - "192.168.122.156:57701:57701/tcp"
+      - "192.168.122.156:7700:7700/tcp"
+      - "192.168.122.156:7701:7701/tcp"
+    environment:
+      TEST_NODE_NAME: "node1"
+      TEST_NODE_OFFSET: "100"
+      INFINISPAN_ADDR_PREFIX: "127"
+      INFINISPAN_LOGLEVEL: "DEBUG"
+      INFINISPAN_FILEPING_PATH: "/tmp"
+      INFINISPAN_MS_RAM: "2g"
+      INFINISPAN_MX_RAM: "2g"
+      INFINISPAN_NIC: "lo"
+      INFINISPAN_GMS_MAX_JOIN_ATTEMPTS: "3"
+  ispn-2:
+    image: karm/sinkit-infinispan:1.27
+    network_mode: "host"
+    volumes:
+    - /tmp:/tmp
+    ports:
+      - "192.168.122.156:11422:11422/tcp"
+      - "192.168.122.156:11423:11423/tcp"
+      - "192.168.122.156:4912:4912/tcp"
+      - "192.168.122.156:4913:4913/tcp"
+      - "192.168.122.156:57800:57800/tcp"
+      - "192.168.122.156:57801:57801/tcp"
+      - "192.168.122.156:7800:7800/tcp"
+      - "192.168.122.156:7801:7801/tcp"
+    environment:
+      TEST_NODE_NAME: "node2"
+      TEST_NODE_OFFSET: "200"
+      INFINISPAN_ADDR_PREFIX: "127"
+      INFINISPAN_LOGLEVEL: "DEBUG"
+      INFINISPAN_FILEPING_PATH: "/tmp"
+      INFINISPAN_MS_RAM: "2g"
+      INFINISPAN_MX_RAM: "2g"
+      INFINISPAN_NIC: "lo"
+      INFINISPAN_GMS_MAX_JOIN_ATTEMPTS: "3"
